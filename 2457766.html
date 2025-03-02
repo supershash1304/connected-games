@@ -25,7 +25,7 @@
             margin: 0;
             font-size: 2em;
         }
-                table {
+        table {
             width: 100%;
             border-collapse: collapse;
             background: #fff;
@@ -54,10 +54,13 @@
             height: 600px;
             margin: 5px;
         }
+        .page-break {
+            page-break-after: always; /* Ensures a page break after this element */
+        }
     </style>
 </head>
 <body>
-    <dir="rtl>
+    <dir="rtl">
     <div class="container">
         <center><h1>Connected Games Development</h1></center>
         <center><h2>K2457766</h2></center>
@@ -174,9 +177,8 @@
         <b>looking forward:</b>
         <br>Following the setup , I will obtain assets and sprites from 
         <br>the designers to actually work on the game environment 
-        @media print {
-  footer {page-break-after: always;}
-}
+    </p>
+    <div class="page-break"></div> <!-- Page break here -->
     <h5>Blog 2</h5>
          <p>Week 3-4
             <p>
