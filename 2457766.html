@@ -176,15 +176,18 @@
          <p>Week 3-4
             <p>
                 <b>Taking upon the server side implementation task</b>
-                <b>1. Unity Netcode for GameObjects (NGO)</b>
-                <br>* Purpose: Provides a high-level API for implementing multiplayer games.
-<br>* Installation:
-   <br> * Open Unity's Package Manager (Window > Package Manager).
-    <br>* Search for "Netcode for GameObjects" and install it.
-<br>* Use Case: Handles networking, synchronization, and player management.
-
+                <br>Creating a scene in unity for player connections page
+                <b>Username Input:</b>
+                <br>The script retrieves the username from a TMP_InputField and 
+                <br>assigns it to PhotonNetwork.NickName when the "Connect" button is clicked.
                 <br>
+                <b>Connection to Photon Server:</b>
+                <br>Upon clicking the "Connect" button, the script initiates a connection to the Photon
+                <br>server using PhotonNetwork.ConnectUsingSettings() and updates the button text to "connecting...".
                 <br>
+                <b>Scene Transition on Connection:</b>
+                <br>Once the connection to the Photon master server is established 
+                <br>(OnConnectedToMaster callback), the script automatically loads the "Lobby" scene.
             </p>
             <p>
                 <b>2. Unity Transport Package</b>
