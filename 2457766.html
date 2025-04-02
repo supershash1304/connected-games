@@ -92,12 +92,12 @@
         </tr>
             <tr>
             <td>4</td>
-            <td>Implementing lobby joining system</td>
+            <td>Implementing lobby joining system & room creation</td>
             <td>Joining lobby in a multiplayer server environment</td>
         </tr>
         <tr>
             <td>5</td>
-            <td>Implementing Room creation system</td>
+            <td>Implementing Room panel system</td>
             <td>Enabling players to create and join rooms</td>
         </tr>
         <tr>
@@ -192,57 +192,23 @@
     <div class="images">
             
             <center><b><p>Images</p></b></center>
-            <center><b><p>Setup for Unity and Git</p></b></center>
-            <center><br><img src="Screenshot 2025-04-02 at 5.38.42 PM.png" alt="Image 2">   
+            <center><b><p>Connect to Server Scene</p></b></center>
+            <center><br><img src="Screenshot 2025-04-02 at 5.38.42 PM.png" alt="Image 3">   
         </div><br><br>
             <p>
-                <b>2. Unity Transport Package</b>
-
-<br>Purpose: Provides low-level networking transport for Netcode for GameObjects.
-<br>Installation:
-<br>In the Package Manager, search for "Unity Transport" and install it.
-<br>Use Case: Manages network connections and data transmission.
+                <b>Creation process of lobby panel</b>
+                <br>Creating a scene in unity to initialize the Lobby and Room panels
+                <br>1. Created a UI Panel named LobbyPanel to serve as the main multiplayer lobby screen.
+                <br>2. Added a TMP_InputField for users to type the room name before creating it.
+                <br>3. Placed a "Create Room" Button that calls the OnClickCreate() method.
+                <br>4. Included a Scroll View to list all available rooms using a vertical layout.
+                <br>5. Used a RoomItem prefab to visually represent each room in the room list.
+                <br>6. Connected the lobby panel to Photon callbacks to update the room list in real-time.
             </p>
-            <p>
-                <b>3. Unity Multiplayer Tools (Optional)</b>
-<br>* Purpose: Provides additional tools for debugging and testing multiplayer games.
-<br>* Installation:
-   <br> * In the Package Manager, search for "Multiplayer Tools" and install it.
-<br>* Use Case: Helps with network simulation, latency testing, and debugging.
-
-            </p>
-        <p>
-            <b>Implementing the multiplayer server creation process</b>
-            <p>
-            <b>1. Set Up the multiplayer UI</b>
-            </p>
-<br>Create a Canvas:
-<br>Right-click in the Hierarchy > UI > Canvas.
-<br>This will automatically create an EventSystem as well.
-<br>Add Buttons:
-<br>Right-click on the Canvas > UI > Button.
-<br>Create three buttons:
-<br>Host Button: For starting the game as both the host and a player.
-<br>Server Button: For starting the game as a dedicated server.
-<br>Client Button: For joining the game as a client.
-<br>Label the Buttons:
-<br>Select each button and change its text (in the Text child object) to "Host", "Server", and "Client".
-<br>Position the Buttons:
-<br>Use the RectTransform tool to position the buttons neatly on the screen.
-        </p>
-    <p>
-            <b>2.Assign the Script to the UI</b>
-
-<br>Attach the Script:
-<br>Select the Canvas in the Hierarchy.
-<br>Add the MultiplayerUI script as a component.
-<br>Assign Buttons:
-<br>Drag the corresponding buttons from the Hierarchy into the hostButton, serverButton, 
-<br>and clientButton fields in the MultiplayerUI script.
-</p>
-        
-    </p>
-    </div>
-</dir>
-</body>
-</html>
+     <div class="images">
+            
+            <center><b><p>Images</p></b></center>
+            <center><b><p>Lobby Panel</p></b></center>
+            <center><br><img src="Screenshot 2025-03-18 at 6.40.19 PM.png" alt="Image 4">   
+        </div><br><br>
+                
