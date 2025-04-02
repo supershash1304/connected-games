@@ -5,59 +5,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>K2457766</title>
     <style>
+        /* Base body styling */
         body {
             background-color: grey; /* Grey background for the whole page */
             display: flex;
             justify-content: center; /* Center the containers horizontally */
-            align-items: center; /* Center the containers vertically */
+            align-items: flex-start; /* Stack items vertically */
             flex-direction: column; /* Stack items vertically */
-            height: 700vh; /* Use the full height of the viewport */
+            height: 100vh; /* Full height of the viewport */
             margin: 0;
             font-family: Arial, sans-serif;
             padding: 0;
         }
+
+        /* Container for each blog section */
         .container {
             background: white;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: left;
-            width: 80%; /* Set width to ensure content is well-aligned */
-            max-width: 900px; /* Set max-width for large screens */
-            margin-bottom: 30px; /* Add space between sections */
+            width: 90%; /* Flexible width to accommodate smaller screens */
+            max-width: 900px; /* Set max width to prevent the container from being too wide on large screens */
+            margin-bottom: 30px; /* Space between sections */
         }
-        h1 {
+
+        h1, h2 {
             margin: 0;
             font-size: 2em;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             background: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
         th, td {
             border: 1px solid #ddd;
             padding: 12px;
             text-align: left;
         }
+
         th {
             background-color: #0073e6;
             color: white;
         }
+
         tr:nth-child(even) {
             background-color: #f9f9f9;
         }
+
         tr:hover {
             background-color: #f1f1f1;
         }
+
+        /* Styling for images inside the container */
         .images {
             margin-top: 20px;
         }
+
         .images img {
-            width: 900px;
-            height: 600px;
-            margin: 5px;
+            width: 100%; /* Make the images responsive */
+            height: auto; /* Maintain aspect ratio */
+            margin: 5px 0;
+        }
+
+        /* Media Queries to make the layout responsive */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px; /* Add padding to the body on small screens */
+            }
+
+            .container {
+                width: 100%; /* Use full width on smaller screens */
+                margin-bottom: 20px; /* Reduced space between sections on small screens */
+            }
+
+            h1, h2 {
+                font-size: 1.5em; /* Smaller font size on small screens */
+            }
+
+            table {
+                font-size: 0.9em; /* Smaller table font size */
+            }
         }
     </style>
 </head>
