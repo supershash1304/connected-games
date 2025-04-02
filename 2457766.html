@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>K2457766</title>
     <style>
         body {
             background-color: grey; /* Grey background for the whole page */
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             flex-direction: column;
             height: auto;
             margin: 0;
             font-family: Arial, sans-serif;
+            padding: 0;
         }
         .container {
             background: white;
@@ -23,6 +23,7 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: left;
             width: 80%; /* Set width to ensure content is well-aligned */
+            margin-bottom: 30px; /* Add space between the sections */
         }
         h1 {
             margin: 0;
@@ -56,18 +57,6 @@
             width: 900px;
             height: 600px;
             margin: 5px;
-        }
-        .section-end {
-            background-color: grey; /* Grey background to reveal grey color */
-            height: 40px; /* Space between sections */
-            margin-top: 30px;
-            width: 100%;
-            padding: 0; /* Cut off white padding */
-        }
-        .section-start {
-            background-color: white; /* White background for new blog sections */
-            padding: 20px;
-            width: 100%; /* Full width */
         }
     </style>
 </head>
@@ -114,114 +103,109 @@
                 <td>Enabling players to choose their preferred characters.</td>
             </tr>
         </table>
+    </div>
 
-        <div class="section-end"></div> <!-- Cut off white padding, reveal grey background before Blog 1 -->
+    <div class="container">
+        <br><br><br><center><h2>Blog 1</h2></center>
+        <center><h4>Week 1-2</h4></center>
+        <p>
+            <b>Choosing the Right Unity Version:</b>
+            <br>Unity is my engine of choice because of its versatility. But picking the right version is 
+            <br>important as I have to adjust it as per my teammates. I installed it via the Unity Hub, 
+            <br>which makes managing different projects and versions easier.
+        </p>
+        <p>
+            <b>Setting Up My Development Environment:</b>
+            <br>Once Unity was installed, I needed the right tools:
+            <br><br>Visual Code: For C# scripting on my MacBook Air.
+            <br>Git: For uploading data files, codes, and game programming blogs.
+        </p>
+        <p>
+            <b>Dividing Work:</b>
+            <br>As a programmer, I am collaborating with my teammate to divide the work.
+        </p>
+        <p>
+            <b>Planning the Game Workflow:</b>
+            <br>Rather than jumping straight into coding, I decided to structure my workflow:
+            <br><br>Concept & Design: Deciding the type of game my team is making.
+            <br>Prototyping: Creating a simple scene with placeholder assets to test movement and interactions.
+            <br>Core Mechanics Development: Deciding what physics, AI, and game logic can be used.
+            <br>
+            <b><br>List of Sequential work to be done:</b>
+            <br>1. Game Environment
+            <br>2. Level physics programming
+            <br>3. Obstacle physics programming
+            <br>4. Collision detectors
+            <br>5. Character programming
+            <br>6. Weapons programming
+            <br>7. Escape Sequence 
+            <br>8. Fight Sequence
+            <br>9. Game Progression
+        </p>
 
-        <div class="section-start"> <!-- White background for Blog 1 -->
-            <br><br><br><center><h2>Blog 1</h2></center>
-            <center><h4>Week 1-2</h4></center>
-            <p>
-                <b>Choosing the Right Unity Version:</b>
-                <br>Unity is my engine of choice because of its versatility. But picking the right version is 
-                <br>important as I have to adjust it as per my teammates. I installed it via the Unity Hub, 
-                <br>which makes managing different projects and versions easier.
-            </p>
-            <p>
-                <b>Setting Up My Development Environment:</b>
-                <br>Once Unity was installed, I needed the right tools:
-                <br><br>Visual Code: For C# scripting on my MacBook Air.
-                <br>Git: For uploading data files, codes, and game programming blogs.
-            </p>
-            <p>
-                <b>Dividing Work:</b>
-                <br>As a programmer, I am collaborating with my teammate to divide the work.
-            </p>
-            <p>
-                <b>Planning the Game Workflow:</b>
-                <br>Rather than jumping straight into coding, I decided to structure my workflow:
-                <br><br>Concept & Design: Deciding the type of game my team is making.
-                <br>Prototyping: Creating a simple scene with placeholder assets to test movement and interactions.
-                <br>Core Mechanics Development: Deciding what physics, AI, and game logic can be used.
-                <br>
-                <b><br>List of Sequential work to be done:</b>
-                <br>1. Game Environment
-                <br>2. Level physics programming
-                <br>3. Obstacle physics programming
-                <br>4. Collision detectors
-                <br>5. Character programming
-                <br>6. Weapons programming
-                <br>7. Escape Sequence 
-                <br>8. Fight Sequence
-                <br>9. Game Progression
-            </p>
+        <div class="images">
+            <center><b><p>Images</p></b></center>
+            <center><b><p>Setup for Unity and Git</p></b></center>
+            <center><br><img src="unity.png" alt="Image 2">
+            <br><br><img src="git.png" alt="Image 3"></center>
+        </div><br><br>
 
-            <div class="images">
-                <center><b><p>Images</p></b></center>
-                <center><b><p>Setup for Unity and Git</p></b></center>
-                <center><br><img src="unity.png" alt="Image 2">
-                <br><br><img src="git.png" alt="Image 3"></center>
-            </div><br><br>
+        <p>
+            <b>Setting up the Photon Unity networking:</b>
+            <br>Steps:
+            <br>Using the Unity Package manager to install the photon networking services.
+            <br>Setting up a server on Photon Unity Networking website.
+            <br>Adding the App ID from the created website to Unity for integrating the project with the server.
+        </p>
+    </div>
 
-            <p>
-                <b>Setting up the Photon Unity networking:</b>
-                <br>Steps:
-                <br>Using the Unity Package manager to install the photon networking services.
-                <br>Setting up a server on Photon Unity Networking website.
-                <br>Adding the App ID from the created website to Unity for integrating the project with the server.
-            </p>
-        </div>
+    <div class="container">
+        <br><br><br><center><h2>Blog 2</h2></center>
+        <center><h4>Week 3-4</h4></center>
+        <p>
+            <b>Taking upon the server-side implementation task:</b>
+            <br>Creating a scene in Unity for player connections page.
+            <br><b>Username Input:</b>
+            <br>The script retrieves the username from a TMP_InputField and 
+            <br>assigns it to PhotonNetwork.NickName when the "Connect" button is clicked.
+            <br><b>Connection to Photon Server:</b>
+            <br>Upon clicking the "Connect" button, the script initiates a connection to the Photon
+            <br>server using PhotonNetwork.ConnectUsingSettings() and updates the button text to "connecting...".
+            <br>
+            <br><b>Scene Transition on Connection:</b>
+            <br>Once the connection to the Photon master server is established, 
+            <br>(OnConnectedToMaster callback), the script automatically loads the "Lobby" scene.
+        </p>
 
-        <div class="section-end"></div> <!-- Cut off white padding, reveal grey background before Blog 2 -->
+        <div class="images">
+            <center><b><p>Images</p></b></center>
+            <center><b><p>Connect to Server Scene</p></b></center>
+            <center><br><img src="Screenshot 2025-04-02 at 5.38.42 PM.png" alt="Image 3"></center>   
+        </div><br><br>
 
-        <div class="section-start"> <!-- White background for Blog 2 -->
-            <br><br><br><center><h2>Blog 2</h2></center>
-            <center><h4>Week 3-4</h4></center>
-            <p>
-                <b>Taking upon the server-side implementation task:</b>
-                <br>Creating a scene in Unity for player connections page.
-                <br><b>Username Input:</b>
-                <br>The script retrieves the username from a TMP_InputField and 
-                <br>assigns it to PhotonNetwork.NickName when the "Connect" button is clicked.
-                <br><b>Connection to Photon Server:</b>
-                <br>Upon clicking the "Connect" button, the script initiates a connection to the Photon
-                <br>server using PhotonNetwork.ConnectUsingSettings() and updates the button text to "connecting...".
-                <br>
-                <br><b>Scene Transition on Connection:</b>
-                <br>Once the connection to the Photon master server is established, 
-                <br>(OnConnectedToMaster callback), the script automatically loads the "Lobby" scene.
-            </p>
+        <p>
+            <b>Creation process of lobby panel:</b>
+            <br>Creating a scene in Unity to initialize the Lobby and Room panels.
+            <br>1. Created a UI Panel named LobbyPanel to serve as the main multiplayer lobby screen.
+            <br>2. Added a TMP_InputField for users to type the room name before creating it.
+            <br>3. Placed a "Create Room" Button that calls the OnClickCreate() method.
+            <br>4. Included a Scroll View to list all available rooms using a vertical layout.
+            <br>5. Used a RoomItem prefab to visually represent each room in the room list.
+            <br>6. Connected the lobby panel to Photon callbacks to update the room list in real-time.
+        </p>
 
-            <div class="images">
-                <center><b><p>Images</p></b></center>
-                <center><b><p>Connect to Server Scene</p></b></center>
-                <center><br><img src="Screenshot 2025-04-02 at 5.38.42 PM.png" alt="Image 3"></center>   
-            </div><br><br>
+        <div class="images">
+            <center><b><p>Images</p></b></center>
+            <center><b><p>Lobby Panel</p></b></center>
+            <center><br><img src="Screenshot 2025-03-18 at 6.40.19 PM.png" alt="Image 4"></center>   
+        </div><br><br>
+    </div>
 
-            <p>
-                <b>Creation process of lobby panel:</b>
-                <br>Creating a scene in Unity to initialize the Lobby and Room panels.
-                <br>1. Created a UI Panel named LobbyPanel to serve as the main multiplayer lobby screen.
-                <br>2. Added a TMP_InputField for users to type the room name before creating it.
-                <br>3. Placed a "Create Room" Button that calls the OnClickCreate() method.
-                <br>4. Included a Scroll View to list all available rooms using a vertical layout.
-                <br>5. Used a RoomItem prefab to visually represent each room in the room list.
-                <br>6. Connected the lobby panel to Photon callbacks to update the room list in real-time.
-            </p>
-
-            <div class="images">
-                <center><b><p>Images</p></b></center>
-                <center><b><p>Lobby Panel</p></b></center>
-                <center><br><img src="Screenshot 2025-03-18 at 6.40.19 PM.png" alt="Image 4"></center>   
-            </div><br><br>
-        </div>
-
-        <div class="section-end"></div> <!-- Cut off white padding, reveal grey background before Blog 3 -->
-
-        <div class="section-start"> <!-- White background for Blog 3 -->
-            <br><br><br><center><h2>Blog 3</h2></center>
-            <center><h4>Week 5-6</h4></center>
-            <!-- Continue with the content for Blog 3 -->
-        </div>
+    <div class="container">
+        <br><br><br><center><h2>Blog 3</h2></center>
+        <center><h4>Week 5-6</h4></center>
+        <!-- Continue with the content for Blog 3 -->
     </div>
 </body>
 </html>
+
