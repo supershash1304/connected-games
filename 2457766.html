@@ -11,7 +11,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 650vh;
+            flex-direction: column;
+            height: auto;
             margin: 0;
             font-family: Arial, sans-serif;
         }
@@ -21,6 +22,7 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: left;
+            width: 80%; /* Set width to ensure content is well-aligned */
         }
         h1 {
             margin: 0;
@@ -56,61 +58,61 @@
             margin: 5px;
         }
         .section-break {
-            background-color: grey; /* This is the grey background between sections */
-            height: 40px; /* Add some space between sections */
+            background-color: grey; /* Grey background to separate sections */
+            height: 40px; /* Space between sections */
             margin-top: 30px;
             margin-bottom: 30px;
+            width: 100%;
         }
         .section-start {
-            background-color: white; /* This will restore the white background at the start of each blog */
-            padding: 20px 0;
+            background-color: white; /* White background for new blog sections */
+            padding: 20px;
+            width: 100%;
         }
     </style>
 </head>
 <body>
-    <dir="rtl">
     <div class="container">
         <center><h1>Connected Games Development</h1></center>
         <center><h2>K2457766</h2></center>
         <h4>My Time Plan as A game programmer for first 6 weeks</h4>
-        
-        
+
         <table>
-        <tr>
-            <th>Week</th>
-            <th>Task</th>
-            <th>Details</th>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>Setup & Environment Configuration</td>
-            <td>Install Unity, GitHub, and VS Code. Set up Git repository, project structure, and version control.</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Server Setup & Networking Framework</td>
-            <td>Choose and set up the multiplayer framework (Photon, Mirror for Unity). Configure server environment.</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>Connecting to the Server implementation</td>
-            <td>Initialize the player connecting to the server through Unity.</td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>Implementing lobby joining system & room creation</td>
-            <td>Joining lobby in a multiplayer server environment.</td>
-        </tr>
-        <tr>
-            <td>5</td>
-            <td>Implementing Room panel system</td>
-            <td>Enabling players to create and join rooms.</td>
-        </tr>
-        <tr>
-            <td>6</td>
-            <td>Implementing Character Selection</td>
-            <td>Enabling players to choose their preferred characters.</td>
-        </tr>
+            <tr>
+                <th>Week</th>
+                <th>Task</th>
+                <th>Details</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Setup & Environment Configuration</td>
+                <td>Install Unity, GitHub, and VS Code. Set up Git repository, project structure, and version control.</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Server Setup & Networking Framework</td>
+                <td>Choose and set up the multiplayer framework (Photon, Mirror for Unity). Configure server environment.</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Connecting to the Server implementation</td>
+                <td>Initialize the player connecting to the server through Unity.</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Implementing lobby joining system & room creation</td>
+                <td>Joining lobby in a multiplayer server environment.</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Implementing Room panel system</td>
+                <td>Enabling players to create and join rooms.</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Implementing Character Selection</td>
+                <td>Enabling players to choose their preferred characters.</td>
+            </tr>
         </table>
 
         <div class="section-break"></div> <!-- Grey break between Blog 1 and Blog 2 -->
@@ -220,6 +222,6 @@
             <center><h4>Week 5-6</h4></center>
             <!-- Continue with the content for Blog 3 -->
         </div>
-    </dir>
+    </div>
 </body>
 </html>
