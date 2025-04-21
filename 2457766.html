@@ -307,7 +307,33 @@
         <center><h4>Week 7-8</h4></center>
          <p>
              <b>MAP DESIGN AND OTHER DESIGNS STILL NOT PROVIDED</b>
-             <br>Sorting Conflicts while Merging the branches in Github 
+             <br>Sorting Conflicts while Merging both programmer's work (the branches in Github)
+             <br><br><b>Conflicts:</b>
+             <br>1)Simultaneous edits to the same methods (TakeDamage(), OnTriggerEnter(), [PunRPC] declarations) caused Git conflicts.
+             <br>2)Identical method names like TakeDamageRPC() appeared in multiple scripts or more than once in a single file.
+             <br>3)Serialized fields and component references were modified differently across branches, creating clashes in .cs, .prefab, .meta, and .unity files.
+             <br>4)PhotonView components were assigned differently in each branch, causing mismatches and broken references.
+             <br>5)Formatting discrepancies (spaces, comments, Debug.Log()) triggered unnecessary merge conflicts.
+             <br>6)Game logic changes and UI updates weren't in sync, leading to UI elements referencing outdated or unsynced gameplay data.
+             <br><br><b>Issues:</b>
+             <br>1)Lack of coordination on modifying shared scripts and core gameplay logic.
+             <br>2)No standard naming or placement conventions for RPC methods, leading to duplication.
+             <br>3)Serialized Unity files (like prefabs/scenes) are sensitive to even minor changes, and Git can't auto-merge them reliably.
+             <br>4)Inconsistent PhotonView assignments across branches broke prefab consistency.
+             <br>5)Different team members had varying coding styles, which Git misread as functional changes.
+             <br>6)Gameplay updates and UI improvements were developed in parallel without shared state handling or abstraction layers.
+             <br><br><b>How Everything was Fixed:</b>
+             <br>1)Carefully merged script logic by isolating network-related code inside [PunRPC] methods and guarding them with photonView.IsMine where needed.
+             <br>2)Unified duplicated methods: e.g., TakeDamageRPC() was defined in only one authoritative script per object type.
+             <br>3)Manually resolved .cs conflicts, then fixed broken links in Unity Editor for .prefab, .meta, and .unity files.
+             <br>4)Used UnityYAMLMerge and manually reassigned PhotonView components after the merge to restore prefab integrity.
+             <br>5)Applied a consistent code formatting standard before merging to reduce formatting-related conflicts.
+             <br>6)Introduced a layered structure:
+                <br>Gameplay scripts (e.g., Health.cs, BossAI.cs) own and update the state.
+                <br>UI scripts (e.g., HealthBarUI.cs) only read and reflect the synced state.
+            
+
+             
          </p>
      </div>
     <div class="container">
