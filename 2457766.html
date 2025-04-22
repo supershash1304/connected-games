@@ -181,10 +181,10 @@
     <center><b><p>PUN Setup</p></b></center>
     <center><br><img src="PUN.png" alt="Image 4" style="width: 350px; height: 500px; object-fit: cover;"></center>
     </div><br><br>
-    </div>
         <p>
              <br> Comment : PUN was setup correctly with no hiccups and I m excited to take off !!
         </p>
+    </div>
 </div>
 
     <div class="container">
@@ -206,17 +206,25 @@
             <br>(OnConnectedToMaster callback), the script automatically loads the "Lobby" scene.
         </p>
 
+        
+        <div class="images">
+            <center><b><p>Images</p></b></center>
+            <center><b><p>Connect to Server logic</p></b></center>
+            <center><br><img src="Screenshot 2025-04-02 at 5.38.42 PM.png" alt="Image 3"></center>   
+        </div>
+        <p>
+            <b>Following is the Connect to Server Logic code Snippet</b>
+        </p>   
         <div class="images">
             <center><b><p>Images</p></b></center>
             <center><b><p>Connect to Server Scene</p></b></center>
-            <center><br><img src="Screenshot 2025-04-02 at 5.38.42 PM.png" alt="Image 3"></center>   
-        </div><br><br>
-
-        <p>
+            <center><br><img src="logic connecttoserver.png" alt="Image 4" style="width: 505px; height: 450px; object-fit: cover;"></center> 
+        </div><br><br> 
+             <p>
             <b>Creation process of lobby panel:</b>
             <br>Creating a scene in Unity to initialize the Lobby and Room panels.
             <br>1. Created a UI Panel named LobbyPanel to serve as the main multiplayer lobby screen.
-            <br>2. Added a TMP_InputField for users to type the room name before creating it.
+            <br>2. Added a <span style="color: green">TMP_InputField</span> for users to type the room name before creating it.
             <br>3. Placed a "Create Room" Button that calls the <span style="color: green">OnClickCreate()</span> Method.
             <br>4. Included a Scroll View to list all available rooms using a vertical layout.
             <br>5. Used a RoomItem prefab to visually represent each room in the room list.
