@@ -277,17 +277,35 @@
             <center><b><p>Lobby panel logic</p></b></center>
             <center><br><img src="Room1.png" alt="Image 4" style="width: 700px; height: 450px; object-fit: cover;"></center> 
         </div><br>
+        <p>
+            <b>The Above image explains that the room panel </b>
+            <br>1) Handles player entry and exit using OnPlayerEnteredRoom and OnPlayerLeftRoom, logging names and updating the player list.
+            <br>2) Updating the room list when changes occur using OnRoomListUpdate.
+            <br>3) Keeps the lobby UI in sync with real-time player and room data in Photon multiplayer.
+        </p>          
         <div class="images">
             <center><b><p>Images</p></b></center>
             <center><b><p>Lobby panel logic</p></b></center>
             <center><br><img src="Room2.png" alt="Image 4" style="width: 700px; height: 450px; object-fit: cover;"></center> 
         </div><br>
+        <p>
+            <b>The Above image explains that the room panel </b>
+            <br>1) Clears the existing room UI by destroying all RoomItem game objects and clearing the list.
+            <br>2) Instantiates new RoomItem prefabs for each updated room in the Photon room list.
+            <br>3) Sets room names, assigns the manager reference, and adds each new item to roomItemsList.
+        </p>      
         <div class="images">
             <center><b><p>Images</p></b></center>
             <center><b><p>Lobby panel logic</p></b></center>
             <center><br><img src="Room3.png" alt="Image 4" style="width: 700px; height: 610px; object-fit: cover;"></center> 
-        </div><br>        
+        </div><br>  
         <p>
+            <b>The Above image explains that the room panel </b>
+            <br>1) WaitAndJoinRoom waits until the player is connected and in the lobby before joining the specified room.
+            <br>2) OnClickLeaveRoom is called when the player chooses to leave the current room using PhotonNetwork.LeaveRoom().
+            <br>3) OnLeftRoom handles cleanup by hiding the room panel, showing the lobby panel, and clearing all player UI elements.
+        </p> 
+        <br><p>
         <b>Room panel:</b>
         <br>1. Displayed a PlayerItem prefab for each player in the room panel UI.
         <br>2. Included left and right arrow buttons on each PlayerItem to cycle through avatars.
