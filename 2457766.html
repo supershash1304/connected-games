@@ -315,10 +315,26 @@
     </p>
     <div class="images">
     <center><b><p>Images</p></b></center>
-    <center><b><p>Character Selection</p></b></center>
+    <center><b><p>Avatar Selection</p></b></center>
     <center><br><img src="Screenshot 2025-04-02 at 8.28.28 PM.png" alt="Image 4" style="width: 250px; height: 300px; object-fit: cover;"></center>
     </div><br><br>
+        <p>
+            <b>Methodologies of Avatar selection And Script</b>
+            <br><b>Photon Custom Properties</b>
+            <br>Each player has a playerAvatar index stored in Photon’s CustomProperties, which is automatically 
+            <br>synchronized across all clients in the room.
+            <br><br><b>UI-Based Selection with Arrows</b>
+            <br>Players can click left/right arrow buttons to cycle through available avatar sprites. These inputs update their 
+            <br>playerAvatar index and immediately broadcast the change.
+            <br><br><b>Real-Time Synchronization</b>
+            <br>Photon invokes OnPlayerPropertiesUpdate, which triggers the UpdatePlayerItem method to update each 
+            <br>player's UI with their newly selected avatar.
+            <br><br><b>Visual Display in Room UI</b>
+            <br>The selected avatar (a sprite from a predefined list) is visually shown next to the player’s name in the lobby 
+            <br>room panel, providing clear feedback to all players.
+        </p>
     </div>
+    
     <div class="container">
         <h4>My Time Plan as A game programmer for next 6 weeks</h4>
 
