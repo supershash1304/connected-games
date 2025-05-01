@@ -269,7 +269,43 @@
             <center><b><p>Room Panel</p></b></center>
             <center><br><img src="Screenshot 2025-03-18 at 6.40.38 PM.png" alt="Image 4"></center>   
         </div><br><br>
-    <p>
+        <p>
+            <b>Following are some of the important code snippets from the lobby manager script for the room panel</b>
+        </p>   
+        <div class="images">
+            <center><b><p>Images</p></b></center>
+            <center><b><p>Lobby panel logic</p></b></center>
+            <center><br><img src="Room1.png" alt="Image 4" style="width: 700px; height: 450px; object-fit: cover;"></center> 
+        </div><br>
+        <p>
+            <b>The Above image explains that the room panel </b>
+            <br>1) Handles player entry and exit using OnPlayerEnteredRoom and OnPlayerLeftRoom, logging names and updating the player list.
+            <br>2) Updating the room list when changes occur using OnRoomListUpdate.
+            <br>3) Keeps the lobby UI in sync with real-time player and room data in Photon multiplayer.
+        </p>          
+        <div class="images">
+            <center><b><p>Images</p></b></center>
+            <center><b><p>Lobby panel logic</p></b></center>
+            <center><br><img src="Room2.png" alt="Image 4" style="width: 700px; height: 450px; object-fit: cover;"></center> 
+        </div><br>
+        <p>
+            <b>The Above image explains that the room panel </b>
+            <br>1) Clears the existing room UI by destroying all RoomItem game objects and clearing the list.
+            <br>2) Instantiates new RoomItem prefabs for each updated room in the Photon room list.
+            <br>3) Sets room names, assigns the manager reference, and adds each new item to roomItemsList.
+        </p>      
+        <div class="images">
+            <center><b><p>Images</p></b></center>
+            <center><b><p>Lobby panel logic</p></b></center>
+            <center><br><img src="Room3.png" alt="Image 4" style="width: 700px; height: 610px; object-fit: cover;"></center> 
+        </div><br>  
+        <p>
+            <b>The Above image explains that the room panel </b>
+            <br>1) WaitAndJoinRoom waits until the player is connected and in the lobby before joining the specified room.
+            <br>2) OnClickLeaveRoom is called when the player chooses to leave the current room using PhotonNetwork.LeaveRoom().
+            <br>3) OnLeftRoom handles cleanup by hiding the room panel, showing the lobby panel, and clearing all player UI elements.
+        </p> 
+        <br><p>
         <b>Room panel:</b>
         <br>1. Displayed a PlayerItem prefab for each player in the room panel UI.
         <br>2. Included left and right arrow buttons on each PlayerItem to cycle through avatars.
@@ -279,10 +315,26 @@
     </p>
     <div class="images">
     <center><b><p>Images</p></b></center>
-    <center><b><p>Character Selection</p></b></center>
+    <center><b><p>Avatar Selection</p></b></center>
     <center><br><img src="Screenshot 2025-04-02 at 8.28.28 PM.png" alt="Image 4" style="width: 250px; height: 300px; object-fit: cover;"></center>
     </div><br><br>
+        <p>
+            <b>Methodologies of Avatar selection And Script</b>
+            <br><b>Photon Custom Properties</b>
+            <br>Each player has a playerAvatar index stored in Photon’s CustomProperties, which is automatically 
+            <br>synchronized across all clients in the room.
+            <br><br><b>UI-Based Selection with Arrows</b>
+            <br>Players can click left/right arrow buttons to cycle through available avatar sprites. These inputs update their 
+            <br>playerAvatar index and immediately broadcast the change.
+            <br><br><b>Real-Time Synchronization</b>
+            <br>Photon invokes OnPlayerPropertiesUpdate, which triggers the UpdatePlayerItem method to update each 
+            <br>player's UI with their newly selected avatar.
+            <br><br><b>Visual Display in Room UI</b>
+            <br>The selected avatar (a sprite from a predefined list) is visually shown next to the player’s name in the lobby 
+            <br>room panel, providing clear feedback to all players.
+        </p>
     </div>
+    
     <div class="container">
         <h4>My Time Plan as A game programmer for next 6 weeks</h4>
 
@@ -294,13 +346,13 @@
             </tr>
             <tr>
                 <td>7</td>
-                <td>GIT MERGING OF PROGRAMMER'S work</td>
-                <td>Pulling the latest changes, switching to the target branch, and executing a Git merge and Fixing conflicts</td>
+                <td>Player Spawner and SpawnPoints</td>
+                <td>Created SpawnPoints to Spawn Players in the game scene and Player Spawner script</td>
             </tr>
             <tr>
                 <td>8</td>
-                <td>Firebase setup</td>
-                <td>Choose and set up the multiplayer framework (Photon, Mirror for Unity). Configure server environment.</td>
+                <td>GIT MERGING OF PROGRAMMER'S work</td>
+                <td>Pulling the latest changes, switching to the target branch, and executing a Git merge and Fixing conflicts</td>
             </tr>
             <tr>
                 <td>9</td>
