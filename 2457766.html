@@ -402,9 +402,30 @@
         <center><h4>Week 7-8</h4></center>
          <p>
              <b>Week 7</b>
-             <b>MAP DESIGN AND UI DESIGNS STILL NOT PROVIDED BY THE DESIGN TEAM😔</b>
+             <br><b>MAP DESIGN AND UI DESIGNS STILL NOT PROVIDED BY THE DESIGN TEAM😔</b>
              <br><br><b>Implementing the Player Spawner and SpawnPoints in the Game Scene</b>
-             <br>
+             <br><b>Spawn Points Setup</b>
+             <br>Multiple Transform points were placed in the scene to represent potential player spawn locations.
+             <br>These were assigned to the PlayerSpawner script via the Unity Inspector for dynamic random selection.
+             <br><br><b>Prefab Usage</b>
+             <br>The player character (X Bot) was converted into a prefab and placed in the Resources folder.
+             <br>This allows runtime instantiation over the network using PhotonNetwork.Instantiate.
+             <br><br><b>Photon Ownership and Network Instantiation</b>
+             <br>Only the local client executes the instantiation using: csharp
+             <br>GameObject player = PhotonNetwork.Instantiate(prefabName, spawnPoint.position, Quaternion.identity);
+             <br>This ensures each player is only responsible for controlling their own character.
+             <br><br><b>Random Spawn Point Logic</b>
+             <br>On scene load, a random Transform from the spawnPoints[] array is selected:
+             <br>int index = Random.Range(0, spawnPoints.Length); Transform spawnPoint = spawnPoints[index];  
+             <br><br><b>Camera Follow Setup</b>
+             <br>The main camera uses a custom CameraFollow script or a Cinemachine FreeLook camera.
+             <br>Upon instantiation, the camera's follow and look-at targets are set to the spawned player:
+             <br>cinemachineCam.Follow = player.transform; cinemachineCam.LookAt = player.transform;
+             <br><br><b>Health UI Assignment</b>             
+             <br>Only the local player's health bar UI is assigned,This avoids syncing UI data across the network.
+             <br><br><b>* PhotonView Check for Local Control</b>      
+             <br>photonView.IsMine is used to ensure camera assignment and UI logic only run for the local player
+             
 
 
 
@@ -415,7 +436,7 @@
 
 
              <b>Week 8</b>
-             <b>Finally got a Rough Prototype of the map , which is not related to the game theme , also still no updates on any UI and sound design</b>
+             <br><b>Finally got a Rough Prototype of the map , which is not related to the game theme , also still no updates on any UI and sound design</b>
              <br><br><b>GIT MERGING:</b>
              <br>Sorting Conflicts while Merging both programmer's work (the branches in Github)
              <br><br><b>Conflicts:</b>
