@@ -488,125 +488,125 @@
     <br><br><b>Original Purpose:</b>
     <br>Manages player health, damage, death logic, ragdoll, and updates health bar.
     <br><br><b>Problems Fixed:</b>
-    <br>* Death wasn't syncing across players.
-    <br>* Health bar didn’t visually update.
-    <br>* Players didn’t see each other die.
+    <br>1) Death wasn't syncing across players.
+    <br>2) Health bar didn’t visually update.
+    <br>3) Players didn’t see each other die.
     <br><br><b>Fixes Made:</b>
-    <br>* Added [PunRPC] public void RPC_TakeDamage(int) to sync damage via Photon.
-    <br>* Used PhotonView.RPC to broadcast health changes to all players (RpcTarget.AllBuffered).
-    <br>* Added proper ragdoll and animator disabling inside RPC_TakeDamage.
-    <br>* OnPhotonSerializeView retained for fallback syncing.
-    <br>* Health bar UI update only for photonView.IsMine.
+    <br>1) Added [PunRPC] public void RPC_TakeDamage(int) to sync damage via Photon.
+    <br>2) Used PhotonView.RPC to broadcast health changes to all players (RpcTarget.AllBuffered).
+    <br>3) Added proper ragdoll and animator disabling inside RPC_TakeDamage.
+    <br>4) OnPhotonSerializeView retained for fallback syncing.
+    <br>5) Health bar UI update only for photonView.IsMine.
 
     <br><br><b>2. HealthBarUI.cs (Player Health Bar)</b>
     <br><br><b>Original Purpose:</b>
     <br>Updates the fill amount of player's health bar.
     <br><br><b>Problems Fixed:</b>
-    <br>* Health bar didn’t animate or reflect real health.
-    <br>* Visual stayed full even after death.
+    <br>1) Health bar didn’t animate or reflect real health.
+    <br>2) Visual stayed full even after death.
     <br><br><b>Fixes Made:</b>
-    <br>* Introduced SetHealth(current, max) with animation via Mathf.Lerp.
-    <br>* Fixed SetMaxHealth() to be properly called and safe from divide-by-zero.
-    <br>* Updated via Update() method to show smooth visual updates.
+    <br>1) Introduced SetHealth(current, max) with animation via Mathf.Lerp.
+    <br>2) Fixed SetMaxHealth() to be properly called and safe from divide-by-zero.
+    <br>3) Updated via Update() method to show smooth visual updates.
 
     <br><br><b>3. BossHealth.cs</b>
     <br><br><b>Original Purpose:</b>
     <br>Manages boss HP, handles phase change, and death logic.
     <br><br><b>Problems Fixed:</b>
-    <br>* Health didn’t sync across players.
-    <br>* Multiple players couldn’t damage the boss.
-    <br>* Death animation not visible across clients.
+    <br>1) Health didn’t sync across players.
+    <br>2) Multiple players couldn’t damage the boss.
+    <br>3) Death animation not visible across clients.
     <br><br><b>Fixes Made:</b>
-    <br>* Made TakeDamageRPC() a [PunRPC] method only callable by MasterClient.
-    <br>* Added OnPhotonSerializeView for live syncing currentHealth.
-    <br>* Triggered RPC_BossDeathVisuals via photonView.RPC() to all clients.
-    <br>* Death trigger added to animator and destroy delayed.
+    <br>1) Made TakeDamageRPC() a [PunRPC] method only callable by MasterClient.
+    <br>2) Added OnPhotonSerializeView for live syncing currentHealth.
+    <br>3) Triggered RPC_BossDeathVisuals via photonView.RPC() to all clients.
+    <br>4) Death trigger added to animator and destroy delayed.
 
     <br><br><b>4. BossHealthBarUI.cs</b>
     <br><br><b>Original Purpose:</b>
     <br>Display boss health bar visually using Image Fill.
     <br><br><b>Problems Fixed:</b>
-    <br>* Boss HP bar didn’t match across players.
-    <br>* Didn’t hide after boss death.
+    <br>1) Boss HP bar didn’t match across players.
+    <br>2) Didn’t hide after boss death.
     <br><br><b>Fixes Made:</b>
-    <br>* Automatically finds boss with tag "Boss" if not assigned.
-    <br>* Smooth fill amount animation.
-    <br>* Option to hide bar if boss dies (via callback added to BossHealth or BossSpawner).
+    <br>1) Automatically finds boss with tag "Boss" if not assigned.
+    <br>2) Smooth fill amount animation.
+    <br>3) Option to hide bar if boss dies (via callback added to BossHealth or BossSpawner).
 
     <br><br><b>5. BossAI.cs</b>
     <br><br><b>Original Purpose:</b>
     <br>Controls movement, attack behavior, and player targeting.
     <br><br><b>Problems Fixed:</b>
-    <br>* Boss kept targeting dead players.
-    <br>* Only MasterClient saw attacks.
-    <br>* Boss death didn’t stop logic or attacks.
-    <br>* Only host took damage from boss.
+    <br>1) Boss kept targeting dead players.
+    <br>2) Only MasterClient saw attacks.
+    <br>3) Boss death didn’t stop logic or attacks.
+    <br>4) Only host took damage from boss.
     <br><br><b>Fixes Made:</b>
-    <br>* Only PhotonNetwork.IsMasterClient controls logic.
-    <br>* FindNextAlivePlayer() updated to skip dead players.
-    <br>* Boss uses PhotonNetwork.Instantiate to spawn projectiles.
-    <br>* Boss death now calls RPC_BossDie() and disables NavMeshAgent and animation logic.
+    <br>1) Only PhotonNetwork.IsMasterClient controls logic.
+    <br>2) FindNextAlivePlayer() updated to skip dead players.
+    <br>3) Boss uses PhotonNetwork.Instantiate to spawn projectiles.
+    <br>4) Boss death now calls RPC_BossDie() and disables NavMeshAgent and animation logic.
 
     <br><br><b>6. Projectile.cs</b>
     <br><br><b>Original Purpose:</b>
     <br>Shoots forward, detects player on hit.
     <br><br><b>Problems Fixed:</b>
-    <br>* Players didn’t take damage.
-    <br>* Boss projectiles didn’t sync damage properly.
+    <br>1) Players didn’t take damage.
+    <br>2) Boss projectiles didn’t sync damage properly.
     <br><br><b>Fixes Made:</b>
-    <br>* Projectiles apply damage to player via photonView.RPC("RPC_TakeDamage").
-    <br>* Calls PhotonNetwork.Destroy(gameObject) for cleanup.
-    <br>* Only runs logic if photonView.IsMine.
+    <br>1) Projectiles apply damage to player via photonView.RPC("RPC_TakeDamage").
+    <br>2) Calls PhotonNetwork.Destroy(gameObject) for cleanup.
+    <br>3) Only runs logic if photonView.IsMine.
 
     <br><br><b>7. ProjectileDamage.cs</b>
     <br><br><b>Original Purpose:</b>
     <br>Handles collisions for projectiles.
     <br><br><b>Problems Fixed:</b>
-    <br>* Damage not synced to correct target (e.g., Boss or Player).
-    <br>* Local-only damage.
+    <br>1) Damage not synced to correct target (e.g., Boss or Player).
+    <br>2) Local-only damage.
     <br><br><b>Fixes Made:</b>
-    <br>* If hit Player, only the owner processes TakeDamage().
-    <br>* If hit Boss, sends TakeDamageRPC() to MasterClient.
-    <br>* Ensured Destroy(gameObject) cleans up after collision.
+    <br>1) If hit Player, only the owner processes TakeDamage().
+    <br>2) If hit Boss, sends TakeDamageRPC() to MasterClient.
+    <br>3) Ensured Destroy(gameObject) cleans up after collision.
 
     <br><br><b>8. WeaponDamage.cs</b>
     <br><br><b>Original Purpose:</b>
     <br>Melee damage to boss/enemy/player.
     <br><br><b>Problems Fixed:</b>
-    <br>* Could damage same target multiple times.
-    <br>* Didn’t sync properly to target.
+    <br>1) Could damage same target multiple times.
+    <br>2) Didn’t sync properly to target.
     <br><br><b>Fixes Made:</b>
-    <br>* Added hasHit check to prevent multiple hits.
-    <br>* Calls targetView.RPC("RPC_TakeDamage", targetView.Owner) for players.
-    <br>* Calls TakeDamageRPC() for bosses.
+    <br>1) Added hasHit check to prevent multiple hits.
+    <br>2) Calls targetView.RPC("RPC_TakeDamage", targetView.Owner) for players.
+    <br>3) Calls TakeDamageRPC() for bosses.
 
     <br><br><b>9. PlayerSpawner.cs</b>
     <br><br><b>Original Purpose:</b>
     <br>Spawns local player and camera assignment.
     <br><br><b>Problems Fixed:</b>
-    <br>* Didn’t assign health bar properly.
-    <br>* Camera didn’t follow player consistently.
+    <br>1) Didn’t assign health bar properly.
+    <br>2) Camera didn’t follow player consistently.
     <br><br><b>Fixes Made:</b>
-    <br>* Loads "X Bot" prefab from Resources.
-    <br>* Finds and assigns HealthBarUI to local player’s health script.
-    <br>* Sets camera to follow photonView.IsMine player.
+    <br>1) Loads "X Bot" prefab from Resources.
+    <br>2) Finds and assigns HealthBarUI to local player’s health script.
+    <br>3) Sets camera to follow photonView.IsMine player.
 
     <br><br><b>10. FallDetector.cs</b>
     <br><br><b>Original Purpose:</b>
     <br>Kills players who fall below a threshold.
     <br><br><b>Problems Fixed:</b>
-    <br>* Used undefined MaxHealth property.
-    <br>* Didn’t call proper RPC-based damage method.
+    <br>1) Used undefined MaxHealth property.
+    <br>2) Didn’t call proper RPC-based damage method.
     <br><br><b>Fixes Made:</b>
-    <br>* Replaced health.MaxHealth with health.GetCurrentHealth() or maxHealth.
-    <br>* Uses health.TakeDamage(9999) to ensure death.
+    <br>1) Replaced health.MaxHealth with health.GetCurrentHealth() or maxHealth.
+    <br>2) Uses health.TakeDamage(9999) to ensure death.
 
     <br><br><b>Final Notes:</b>
-    <br>* Photon RPCs were applied correctly to every remote interaction.
-    <br>* Only MasterClient can change core game state like boss health.
-    <br>* All players now see accurate HP values, ragdolls, death, and projectiles.
-    <br>* Health bars now visually decrease and sync across all clients.
-    <br>* Death animations now play properly after fixing missing animator triggers.
+    <br>1) Photon RPCs were applied correctly to every remote interaction.
+    <br>2) Only MasterClient can change core game state like boss health.
+    <br>3) All players now see accurate HP values, ragdolls, death, and projectiles.
+    <br>4) Health bars now visually decrease and sync across all clients.
+    <br>5) Death animations now play properly after fixing missing animator triggers.
 </p>
         <p>
             <br><b>Week 10</b>
@@ -638,15 +638,15 @@
     <br><br><b>Original Purpose:</b>
     <br>Handle local player death by showing a UI, leaving the Photon room, and transitioning back to the lobby.
     <br><br><b>Flow:</b>
-    <br>* Each player’s character has a Health.cs script attached.
-    <br>* When currentHealth drops to 0, isDead is set to true and ragdoll physics are enabled.
-    <br>* If photonView.IsMine, the DeathScreenUI (tagged "DeathUI") is activated.
-    <br>* After 5 seconds, PhotonNetwork.LeaveRoom() is called.
-    <br>* RoomExitHandler.cs listens for OnLeftRoom() and loads "ConnectToServer" scene.
+    <br>1) Each player’s character has a Health.cs script attached.
+    <br>2) When currentHealth drops to 0, isDead is set to true and ragdoll physics are enabled.
+    <br>3) If photonView.IsMine, the DeathScreenUI (tagged "DeathUI") is activated.
+    <br>4) After 5 seconds, PhotonNetwork.LeaveRoom() is called.
+    <br>5) RoomExitHandler.cs listens for OnLeftRoom() and loads "ConnectToServer" scene.
     <br><br><b>Result:</b>
-    <br>* Only the dead player exits the room.
-    <br>* Other players continue playing uninterrupted.
-    <br>* Transition is smooth and synced.
+    <br>1) Only the dead player exits the room.
+    <br>2) Other players continue playing uninterrupted.
+    <br>3) Transition is smooth and synced.
         </p>
         <div class="images">
             <center><b><p>Images</p></b></center>
@@ -663,17 +663,17 @@
     <br><br><b>Original Purpose:</b>
     <br>End the game for all players when the boss is defeated and transition them to a shared win screen.
     <br><br><b>Flow:</b>
-    <br>* BossHealth.cs manages a shared health pool via PhotonView.
-    <br>* When health reaches 0, Die() is called.
-    <br>* All players receive a visual via RPC_BossDeathVisuals().
-    <br>* Only the MasterClient calls PhotonNetwork.LoadLevel("WinScene").
-    <br>* PhotonNetwork.AutomaticallySyncScene ensures all clients load the same scene.
-    <br>* WinSceneHandler.cs waits 3 seconds then loads "ConnectToServer" scene.
+    <br>1) BossHealth.cs manages a shared health pool via PhotonView.
+    <br>2) When health reaches 0, Die() is called.
+    <br>3) All players receive a visual via RPC_BossDeathVisuals().
+    <br>4) Only the MasterClient calls PhotonNetwork.LoadLevel("WinScene").
+    <br>5) PhotonNetwork.AutomaticallySyncScene ensures all clients load the same scene.
+    <br>6) WinSceneHandler.cs waits 3 seconds then loads "ConnectToServer" scene.
 
     <br><br><b>Result:</b>
-    <br>* All players transition together to the WinScene.
-    <br>* Dedicated win screen is shown.
-    <br>* Match resets cleanly for a new session.
+    <br>1) All players transition together to the WinScene.
+    <br>2) Dedicated win screen is shown.
+    <br>3) Match resets cleanly for a new session.
 
     
 </p>
@@ -691,16 +691,100 @@
          <div class="images">
         <center><b><p>Images</p></b></center>
     <center><b><p>Win & Death Screen Architecture</p></b></center>
-    <center><br><img src="windeath.png" alt="Image 4" style="width: 1000px; height: 600px; object-fit: cover;"></center>
-    </div><br><br>    </div>
+    <center><br><img src="windeath.png" alt="Image 4" style="width: 700px; height: 1000px; object-fit: cover;"></center>
+    </div><br><br> 
+        <p>
+            <b>Comment : Week 10 is Completed and there is no new design provided by the Designers Yet
+                <br> as there is no new map we were using the old rough design they provided
+            </b>
+        </p>
+    </div>
+    
     <div class="container">
         `supershash1304 authored on Apr 22`
         <br><br><br><center><h2>Blog 6</h2></center>
         <center><h4>Week 11-12</h4></center>
         <p>
-            <b>MAP DESIGN AND OTHER DESIGNS STILL NOT PROVIDED</b>
+            <b>As there still no new map we as programmers decided to go with the old rough design, UI design was not good
+            <br>and there is no attempt of sound design, so I decided to go with the free asset store online to setup sound</b>
+            <br>
         </p>
-     </div>
+        <p>
+    <br><br><b>Key Audio Features: SoundManager (Multiplayer-Ready)</b>
+
+    <br><br><b>1. Singleton Pattern</b>
+    <br><br><b>Original Purpose:</b>
+    <br>Ensure only one instance of SoundManager exists across all scenes for global access to audio controls.
+    <br><br><b>Implementation:</b>
+    <br>1) Uses public static SoundManager Instance to implement singleton design.
+    <br>2) Prevents multiple audio sources from overlapping or duplicating.
+
+    <br><br><b>2. Persistent Across Scenes</b>
+    <br><br><b>Original Purpose:</b>
+    <br>Keep audio playing consistently even during scene transitions.
+    <br><br><b>Implementation:</b>
+    <br>1) Uses DontDestroyOnLoad(gameObject) to keep the SoundManager alive across all scenes.
+    <br>2) Maintains background music and SFX continuity between UI and gameplay.
+
+    <br><br><b>3. Scene-Based Music Reset</b>
+    <br><br><b>Original Purpose:</b>
+    <br>Handle music switching cleanly between scenes without overlap or unintended loops.
+    <br><br><b>Implementation:</b>
+    <br>1) Subscribes to SceneManager.sceneLoaded event.
+    <br>2) On scene load, stops any current music, selects the appropriate background track, and restarts playback.
+    <br>3) Ensures correct clips play (e.g. lobby music when returning from Win or Death scenes).
+
+    <br><br><b>4. Local Audio Playback</b>
+    <br><br><b>Original Purpose:</b>
+    <br>Ensure audio playback is handled client-side to reduce network load and sync complexity.
+    <br><br><b>Implementation:</b>
+    <br>1) All functions like PlaySoundOneShot(), PlayLocalSound(), and StopSound() operate locally.
+    <br>2) Used for actions such as jumping, walking loops, or environment sounds.
+    <br>3) No Photon RPCs involved — reduces unnecessary bandwidth usage.
+</p>
+        <div class="images">
+        <center><b><p>Images</p></b></center>
+    <center><b><p>SoundManager Properties</p></b></center>
+    <center><br><img src="soundmanager.png" alt="Image 4" style="width: 700px; height: 700px; object-fit: cover;"></center>
+    </div><br><br>  
+        <p>
+    <br><br><b>Initial Playtesting started</b>
+
+    <br><br><b>1. Game Start</b>
+    <br><br><b>Steps:</b>
+    <br>1) Launch the game from the ConnectToServer scene.
+    <br>2) Enter a player nickname and create or join a room.
+    <br>3) Wait for a second player to join the same room.
+
+    <br><br><b>2. Game Initialization</b>
+    <br><br><b>Steps:</b>
+    <br>1) Once both players are present, the game begins automatically.
+    <br>2) Each player spawns at a random spawn point.
+    <br>3) Individual cameras and UI elements are assigned per player (e.g. health bar, controls).
+
+    <br><br><b>3. Gameplay Sync Checks</b>
+    <br><br><b>Steps:</b>
+    <br>1) Player movement, shooting, and animation syncing are verified between both clients.
+    <br>2) The boss AI actively targets alive players and fires projectiles.
+
+    <br><br><b>4. Death Handling Test</b>
+    <br><br><b>Steps:</b>
+    <br>1) One player is intentionally killed to trigger the DeathScreen UI.
+    <br>2) That player is disconnected from the room after a 5-second delay.
+    <br>3) Remaining player continues gameplay uninterrupted.
+
+    <br><br><b>5. Win Scenario</b>
+    <br><br><b>Steps:</b>
+    <br>1) The remaining player defeats the boss.
+    <br>2) All active players transition to the WinScene.
+    <br>3) After a short delay, all players are returned to the ConnectToServer menu.
+
+    <br><br><b>Result:</b>
+    <br>1) Full multiplayer game loop confirmed: from lobby to match, death and win conditions, and lobby return.
+    <br>2) Scene transitions and UI logic validated for both local and networked states.
+</p>
+
+    </div>
     <div class="container">
         <h4>My Time Plan as A game programmer for last 2 weeks</h4>
     <table>
