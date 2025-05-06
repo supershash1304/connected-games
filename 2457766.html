@@ -274,7 +274,7 @@
         </p>   
         <div class="images">
             <center><b><p>Images</p></b></center>
-            <center><b><p>Lobby panel logic</p></b></center>
+            <center><b><p>Room Panel Logic</p></b></center>
             <center><br><img src="Room1.png" alt="Image 4" style="width: 700px; height: 450px; object-fit: cover;"></center> 
         </div><br>
         <p>
@@ -285,7 +285,7 @@
         </p>          
         <div class="images">
             <center><b><p>Images</p></b></center>
-            <center><b><p>Lobby panel logic</p></b></center>
+            <center><b><p>Room Panel Logic</p></b></center>
             <center><br><img src="Room2.png" alt="Image 4" style="width: 700px; height: 450px; object-fit: cover;"></center> 
         </div><br>
         <p>
@@ -296,7 +296,7 @@
         </p>      
         <div class="images">
             <center><b><p>Images</p></b></center>
-            <center><b><p>Lobby panel logic</p></b></center>
+            <center><b><p>Room Panel Logic</p></b></center>
             <center><br><img src="Room3.png" alt="Image 4" style="width: 700px; height: 610px; object-fit: cover;"></center> 
         </div><br>  
         <p>
@@ -423,7 +423,7 @@
              <br>cinemachineCam.Follow = player.transform; cinemachineCam.LookAt = player.transform;
              <br><br><b>Health UI Assignment</b>             
              <br>Only the local player's health bar UI is assigned,This avoids syncing UI data across the network.
-             <br><br><b>* PhotonView Check for Local Control</b>      
+             <br><br><b>PhotonView Check for Local Control</b>      
              <br>photonView.IsMine is used to ensure camera assignment and UI logic only run for the local player
              <div class="images">
     <center><b><p>Images</p></b></center>
@@ -477,7 +477,137 @@
         <br><br><br><center><h2>Blog 5</h2></center>
         <center><h4>Week 9-10</h4></center>
         <p>
-            <b>MAP DESIGN AND UI DESIGNS STILL NOT PROVIDED BY THE DESIGN TEAM</b>
+            <b>The second programmer set up the rough map BUT UNFORTUNATELY DID ALL THE SCRIPTING FOR SINGLEPLAYER, 
+                also still no updates on any UI and sound design,
+            </b>
+            <p>
+    <br><br><b>Changing InGame Player, AI, Weapon, Enemy & Boss scripts created by the second programmer to be multiplayer and Photon ready</b>
+
+    <br><br><b>1. Health.cs (Player)</b>
+    <br><br><b>Original Purpose:</b>
+    <br>Manages player health, damage, death logic, ragdoll, and updates health bar.
+    <br><br><b>Problems Fixed:</b>
+    <br>* Death wasn't syncing across players.
+    <br>* Health bar didn’t visually update.
+    <br>* Players didn’t see each other die.
+    <br><br><b>Fixes Made:</b>
+    <br>* Added [PunRPC] public void RPC_TakeDamage(int) to sync damage via Photon.
+    <br>* Used PhotonView.RPC to broadcast health changes to all players (RpcTarget.AllBuffered).
+    <br>* Added proper ragdoll and animator disabling inside RPC_TakeDamage.
+    <br>* OnPhotonSerializeView retained for fallback syncing.
+    <br>* Health bar UI update only for photonView.IsMine.
+
+    <br><br><b>2. HealthBarUI.cs (Player Health Bar)</b>
+    <br><br><b>Original Purpose:</b>
+    <br>Updates the fill amount of player's health bar.
+    <br><br><b>Problems Fixed:</b>
+    <br>* Health bar didn’t animate or reflect real health.
+    <br>* Visual stayed full even after death.
+    <br><br><b>Fixes Made:</b>
+    <br>* Introduced SetHealth(current, max) with animation via Mathf.Lerp.
+    <br>* Fixed SetMaxHealth() to be properly called and safe from divide-by-zero.
+    <br>* Updated via Update() method to show smooth visual updates.
+
+    <br><br><b>3. BossHealth.cs</b>
+    <br><br><b>Original Purpose:</b>
+    <br>Manages boss HP, handles phase change, and death logic.
+    <br><br><b>Problems Fixed:</b>
+    <br>* Health didn’t sync across players.
+    <br>* Multiple players couldn’t damage the boss.
+    <br>* Death animation not visible across clients.
+    <br><br><b>Fixes Made:</b>
+    <br>* Made TakeDamageRPC() a [PunRPC] method only callable by MasterClient.
+    <br>* Added OnPhotonSerializeView for live syncing currentHealth.
+    <br>* Triggered RPC_BossDeathVisuals via photonView.RPC() to all clients.
+    <br>* Death trigger added to animator and destroy delayed.
+
+    <br><br><b>4. BossHealthBarUI.cs</b>
+    <br><br><b>Original Purpose:</b>
+    <br>Display boss health bar visually using Image Fill.
+    <br><br><b>Problems Fixed:</b>
+    <br>* Boss HP bar didn’t match across players.
+    <br>* Didn’t hide after boss death.
+    <br><br><b>Fixes Made:</b>
+    <br>* Automatically finds boss with tag "Boss" if not assigned.
+    <br>* Smooth fill amount animation.
+    <br>* Option to hide bar if boss dies (via callback added to BossHealth or BossSpawner).
+
+    <br><br><b>5. BossAI.cs</b>
+    <br><br><b>Original Purpose:</b>
+    <br>Controls movement, attack behavior, and player targeting.
+    <br><br><b>Problems Fixed:</b>
+    <br>* Boss kept targeting dead players.
+    <br>* Only MasterClient saw attacks.
+    <br>* Boss death didn’t stop logic or attacks.
+    <br>* Only host took damage from boss.
+    <br><br><b>Fixes Made:</b>
+    <br>* Only PhotonNetwork.IsMasterClient controls logic.
+    <br>* FindNextAlivePlayer() updated to skip dead players.
+    <br>* Boss uses PhotonNetwork.Instantiate to spawn projectiles.
+    <br>* Boss death now calls RPC_BossDie() and disables NavMeshAgent and animation logic.
+
+    <br><br><b>6. Projectile.cs</b>
+    <br><br><b>Original Purpose:</b>
+    <br>Shoots forward, detects player on hit.
+    <br><br><b>Problems Fixed:</b>
+    <br>* Players didn’t take damage.
+    <br>* Boss projectiles didn’t sync damage properly.
+    <br><br><b>Fixes Made:</b>
+    <br>* Projectiles apply damage to player via photonView.RPC("RPC_TakeDamage").
+    <br>* Calls PhotonNetwork.Destroy(gameObject) for cleanup.
+    <br>* Only runs logic if photonView.IsMine.
+
+    <br><br><b>7. ProjectileDamage.cs</b>
+    <br><br><b>Original Purpose:</b>
+    <br>Handles collisions for projectiles.
+    <br><br><b>Problems Fixed:</b>
+    <br>* Damage not synced to correct target (e.g., Boss or Player).
+    <br>* Local-only damage.
+    <br><br><b>Fixes Made:</b>
+    <br>* If hit Player, only the owner processes TakeDamage().
+    <br>* If hit Boss, sends TakeDamageRPC() to MasterClient.
+    <br>* Ensured Destroy(gameObject) cleans up after collision.
+
+    <br><br><b>8. WeaponDamage.cs</b>
+    <br><br><b>Original Purpose:</b>
+    <br>Melee damage to boss/enemy/player.
+    <br><br><b>Problems Fixed:</b>
+    <br>* Could damage same target multiple times.
+    <br>* Didn’t sync properly to target.
+    <br><br><b>Fixes Made:</b>
+    <br>* Added hasHit check to prevent multiple hits.
+    <br>* Calls targetView.RPC("RPC_TakeDamage", targetView.Owner) for players.
+    <br>* Calls TakeDamageRPC() for bosses.
+
+    <br><br><b>9. PlayerSpawner.cs</b>
+    <br><br><b>Original Purpose:</b>
+    <br>Spawns local player and camera assignment.
+    <br><br><b>Problems Fixed:</b>
+    <br>* Didn’t assign health bar properly.
+    <br>* Camera didn’t follow player consistently.
+    <br><br><b>Fixes Made:</b>
+    <br>* Loads "X Bot" prefab from Resources.
+    <br>* Finds and assigns HealthBarUI to local player’s health script.
+    <br>* Sets camera to follow photonView.IsMine player.
+
+    <br><br><b>10. FallDetector.cs</b>
+    <br><br><b>Original Purpose:</b>
+    <br>Kills players who fall below a threshold.
+    <br><br><b>Problems Fixed:</b>
+    <br>* Used undefined MaxHealth property.
+    <br>* Didn’t call proper RPC-based damage method.
+    <br><br><b>Fixes Made:</b>
+    <br>* Replaced health.MaxHealth with health.GetCurrentHealth() or maxHealth.
+    <br>* Uses health.TakeDamage(9999) to ensure death.
+
+    <br><br><b>Final Notes:</b>
+    <br>* Photon RPCs were applied correctly to every remote interaction.
+    <br>* Only MasterClient can change core game state like boss health.
+    <br>* All players now see accurate HP values, ragdolls, death, and projectiles.
+    <br>* Health bars now visually decrease and sync across all clients.
+    <br>* Death animations now play properly after fixing missing animator triggers.
+</p>
+
         </p>
      </div>
     <div class="container">
