@@ -335,7 +335,7 @@
         </p>
         <div class="images">
     <center><b><p>Images</p></b></center>
-    <center><b><p>Avatar Selection</p></b></center>
+    <center><b><p>Player Item</p></b></center>
     <center><br><img src="playeritem.png" alt="Image 4" style="width: 765px; height: 290px; object-fit: cover;"></center>
     </div><br><br>
         <p>
@@ -344,7 +344,7 @@
         </p>
         <div class="images">
     <center><b><p>Images</p></b></center>
-    <center><b><p>Avatar Selection</p></b></center>
+    <center><b><p>Lobby Manager properties</p></b></center>
     <center><br><img src="LobbyManager.png" alt="Image 4" style="width: 600px; height: 600px; object-fit: cover;"></center>
     </div><br><br>
         <p>
@@ -426,15 +426,16 @@
              <br><br><b>PhotonView Check for Local Control</b>      
              <br>photonView.IsMine is used to ensure camera assignment and UI logic only run for the local player
              <div class="images">
-    <center><b><p>Images</p></b></center>
-    <center><b><p>Avatar Selection</p></b></center>
-    <center><br><img src="architecture.png" alt="Image 4" style="width: 500px; height: 800px; object-fit: cover;"></center>
-    </div><br><br>
-         <div class="images">
         <center><b><p>Images</p></b></center>
-    <center><b><p>Avatar Selection</p></b></center>
+    <center><b><p>Player Spawner Logic</p></b></center>
     <center><br><img src="playerspawner.png" alt="Image 4" style="width: 900px; height: 600px; object-fit: cover;"></center>
     </div><br><br>
+         <div class="images">
+    <center><b><p>Images</p></b></center>
+    <center><b><p>Quick Architecture flow diagram for work till now</p></b></center>
+    <center><br><img src="architecture.png" alt="Image 4" style="width: 650px; height: 800px; object-fit: cover;"></center>
+    </div><br><br>
+         
             <br><b>Week 8</b>
              <br><b>Finally got a Rough Prototype of the map , which is not related to the game theme , also still no updates on any UI and sound design</b>
              <br><br><b>GIT MERGING:</b>
@@ -609,8 +610,10 @@
 </p>
         <p>
             <br><b>Week 10</b>
-            <br><b>The UI design was provided but unfortunately were literal photos which are not acceptable
+            <br><b>The UI design was provided but unfortunately were literal photos which are not acceptable, this is what they provided : 
+             <br>   
             <br>https://kingstonuniversity-my.sharepoint.com/:f:/g/personal/k2410945_kingston_ac_uk/EhJqOFaK2fxHtOUdhD-jTb4Blwm_jj50tuPe7ldhQDICuw?e=Jpfsq0
+                <br>
             <br>still used these photos to be accomodated as background and game name</b>
                  
     </p>
@@ -618,18 +621,78 @@
         </p>
          <div class="images">
         <center><b><p>Images</p></b></center>
-    <center><b><p>Avatar Selection</p></b></center>
+    <center><b><p>new look connect to serverp></b></center>
     <center><br><img src="connect2.png" alt="Image 4" style="width: 900px; height: 600px; object-fit: cover;"></center>
     </div><br><br>
         <div class="images">
         <center><b><p>Images</p></b></center>
-    <center><b><p>Avatar Selection</p></b></center>
+    <center><b><p>new look lobby</p></b></center>
     <center><br><img src="lobby2.png" alt="Image 4" style="width: 900px; height: 600px; object-fit: cover;"></center>
     </div><br><br>  
 
 
-        <br><b>Making DeathScreenUI and WinScene to Handle death and win logic</b>
-    </div>
+        <p>
+    <br><br><b>Death & Win Scene Flow Implementation (Multiplayer-Photon)</b>
+
+    <br><br><b>1. Death Screen Flow</b>
+    <br><br><b>Original Purpose:</b>
+    <br>Handle local player death by showing a UI, leaving the Photon room, and transitioning back to the lobby.
+    <br><br><b>Flow:</b>
+    <br>* Each player’s character has a Health.cs script attached.
+    <br>* When currentHealth drops to 0, isDead is set to true and ragdoll physics are enabled.
+    <br>* If photonView.IsMine, the DeathScreenUI (tagged "DeathUI") is activated.
+    <br>* After 5 seconds, PhotonNetwork.LeaveRoom() is called.
+    <br>* RoomExitHandler.cs listens for OnLeftRoom() and loads "ConnectToServer" scene.
+    <br><br><b>Result:</b>
+    <br>* Only the dead player exits the room.
+    <br>* Other players continue playing uninterrupted.
+    <br>* Transition is smooth and synced.
+        </p>
+        <div class="images">
+            <center><b><p>Images</p></b></center>
+    <center><b><p>Death Screen Logic</p></b></center>
+    <center><br><img src="roomexit.png" alt="Image 4" style="width: 900px; height: 650px; object-fit: cover;"></center>
+    </div><br><br>
+         <div class="images">
+        <center><b><p>Images</p></b></center>
+    <center><b><p>The Death Screen UI</p></b></center>
+    <center><br><img src="deathscreen.png" alt="Image 4" style="width: 1000px; height: 600px; object-fit: cover;"></center>
+    </div><br><br>
+<p>
+    <br><br><b>2. Win Scene Flow</b>
+    <br><br><b>Original Purpose:</b>
+    <br>End the game for all players when the boss is defeated and transition them to a shared win screen.
+    <br><br><b>Flow:</b>
+    <br>* BossHealth.cs manages a shared health pool via PhotonView.
+    <br>* When health reaches 0, Die() is called.
+    <br>* All players receive a visual via RPC_BossDeathVisuals().
+    <br>* Only the MasterClient calls PhotonNetwork.LoadLevel("WinScene").
+    <br>* PhotonNetwork.AutomaticallySyncScene ensures all clients load the same scene.
+    <br>* WinSceneHandler.cs waits 3 seconds then loads "ConnectToServer" scene.
+
+    <br><br><b>Result:</b>
+    <br>* All players transition together to the WinScene.
+    <br>* Dedicated win screen is shown.
+    <br>* Match resets cleanly for a new session.
+
+    
+</p>
+     </p>
+    <div class="images">
+        <center><b><p>Images</p></b></center>
+    <center><b><p>Winscene Exit logic</p></b></center>
+    <center><br><img src="winexit.png" alt="Image 4" style="width: 900px; height: 650px; object-fit: cover;"></center>
+    </div><br><br>
+         <div class="images">
+        <center><b><p>Images</p></b></center>
+    <center><b><p>Win Scene with WinExitHandler</p></b></center>
+    <center><br><img src="winscene.png" alt="Image 4" style="width: 1000px; height: 600px; object-fit: cover;"></center>
+    </div><br><br>
+         <div class="images">
+        <center><b><p>Images</p></b></center>
+    <center><b><p>Win & Death Screen Architecture</p></b></center>
+    <center><br><img src="windeath.png" alt="Image 4" style="width: 1000px; height: 600px; object-fit: cover;"></center>
+    </div><br><br>    </div>
     <div class="container">
         `supershash1304 authored on Apr 22`
         <br><br><br><center><h2>Blog 6</h2></center>
